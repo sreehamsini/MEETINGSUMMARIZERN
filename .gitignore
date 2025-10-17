@@ -17,3 +17,8 @@ uploads/
 # IDE specific
 .vscode/
 .idea/
+
+# Ignore large model files from Hugging Face
+Backend/models/
+frontend/build/
+node_modules/
