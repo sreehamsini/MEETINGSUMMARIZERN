@@ -9,7 +9,7 @@ def generate_summary(transcript):
         tokenizer = BartTokenizer.from_pretrained(model_name)
         summarizer = pipeline("summarization", model=model, tokenizer=tokenizer)
         prompt = f"Please summarize the following meeting transcript. Identify the key decisions made and list them under a 'Key Decisions' heading. Then, identify any action items or tasks and list them under an 'Action Items' heading.\n\nTranscript:\n{transcript}"
-        summary = summarizer(prompt, max_length=250, min_length=50, do_sample=False)
-        return {"summary": summary[0]['summary_text']}
+        summary = summarizer(prompt, max_length=500, min_length=100, do_sample=False)
+        return {"summary": summary[0]['summary_text'], "transcript": transcript}
     except Exception as e:
         return {"error": str(e)}
