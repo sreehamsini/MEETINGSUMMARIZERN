@@ -1,58 +1,98 @@
 # Meeting Summarizer
 
-## Objective
-This project provides a simple yet powerful tool to transcribe meeting audio files and generate concise, action-oriented summaries. It is designed to quickly extract key decisions and action items from lengthy discussions, improving productivity and ensuring important outcomes are not missed.
+This project is a web application that summarizes audio meetings. You can upload an audio file (MP3, WAV, or OGG), and the application will provide a transcription and a summary of the meeting. The frontend has been beautified with modern designs and interactive elements.
 
 ## Features
-- **Audio Transcription:** Utilizes OpenAI's Whisper model to accurately transcribe spoken words from audio files.
-- **Action-Oriented Summaries:** Leverages a Hugging Face `transformers` model to generate summaries that specifically highlight key decisions and action items.
-- **Web-Based Interface:** A simple and clean frontend allows for easy audio file uploads and displays the generated summary.
-- **Local & Free:** The entire process runs locally without relying on any paid cloud services, ensuring privacy and cost-effectiveness.
 
-## Technical Stack
-- **Backend:** Flask
-- **Transcription:** `openai-whisper` (medium model)
-- **Summarization:** `transformers` (facebook/bart-large-cnn)
-- **Frontend:** HTML, CSS, JavaScript
+-   **Audio Transcription**: Utilizes OpenAI's Whisper model to accurately transcribe spoken words from audio files.
+-   **Text Summarization**: Leverages a Hugging Face `transformers` model to generate concise summaries.
+-   **Advanced Web Interface**: A modern, user-friendly React frontend with improved aesthetics and `react-icons` for visual cues, allowing for easy audio file uploads and displaying the generated summary and transcript.
+-   **Local & Free**: The entire process runs locally without relying on any paid cloud services, ensuring privacy and cost-effectiveness.
 
-## Setup and Installation
+## Tech Stack
 
-1.  **Clone the repository:**
+### Frontend
+
+-   **React**: A JavaScript library for building user interfaces.
+-   **React Icons**: A library for including popular icons in your React projects.
+-   **HTML, CSS, JavaScript**: Core web technologies for structure, styling, and interactivity.
+
+### Backend
+
+-   **Flask**: A lightweight web framework for Python.
+-   **Whisper**: An automatic speech recognition (ASR) system from OpenAI for transcribing audio.
+-   **Transformers**: A library from Hugging Face for natural language processing tasks, used here for summarization.
+-   **PyTorch**: An open-source machine learning library.
+
+## Getting Started
+
+### Prerequisites
+
+-   Node.js and npm (for the frontend)
+-   Python and pip (for the backend)
+-   **FFmpeg**: The Whisper model requires FFmpeg. Please follow the official installation instructions for your operating system: [https://ffmpeg.org/download.html](https://ffmpeg.org/download.html)
+
+### Installation and Running
+
+#### Backend
+
+1.  **Navigate to the `Backend` directory:**
+
     ```bash
-    git clone <your-repository-url>
-    cd MeetingSummarizer
+    cd Backend
     ```
 
-2.  **Install FFmpeg:**
-    The Whisper model requires FFmpeg. Please follow the official installation instructions for your operating system: [https://ffmpeg.org/download.html](https://ffmpeg.org/download.html)
+2.  **Create a virtual environment (recommended):**
 
-3.  **Create a virtual environment (recommended):**
     ```bash
     python -m venv venv
     source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
     ```
 
-4.  **Install the required Python packages:**
+3.  **Install the required Python packages:**
+
     ```bash
-    pip install -r Backend/requirements.txt
+    pip install -r requirements.txt
     ```
 
-## How to Run the Application
+4.  **Run the Flask application:**
 
-1.  **Start the Flask server:**
     ```bash
-    python Backend/app.py
+    python app.py
     ```
 
-2.  **Open your web browser:**
-    Navigate to `http://127.0.0.1:5000`
+    The backend server will start on `http://127.0.0.1:5000`.
 
-## How to Use
+#### Frontend
 
-1.  Click the "Choose File" button to select an audio file from your computer.
-2.  Click the "Summarize" button to begin the transcription and summarization process.
-3.  Please be patient, as the initial model download and the transcription of large files can take some time.
-4.  The generated summary, including key decisions and action items, will be displayed on the page.
+1.  **Navigate to the `frontend` directory:**
+
+    ```bash
+    cd frontend
+    ```
+
+2.  **Install the required Node.js packages:**
+
+    ```bash
+    npm install
+    ```
+
+3.  **Start the React development server:**
+
+    ```bash
+    npm start
+    ```
+
+    The frontend application will open in your browser at `http://localhost:3000`.
+
+### Usage
+
+1.  Ensure both the backend and frontend servers are running.
+2.  Open your browser and go to `http://localhost:3000`.
+3.  Click the "Choose an audio file" button to select an audio file (MP3, WAV, or OGG) from your computer.
+4.  Click the "Summarize" button to upload the file and start the transcription and summarization process.
+5.  Please be patient, as the initial model download and the processing of large files can take some time.
+6.  The generated summary and full transcript will be displayed on the page.
 
 ## Project Structure
 ```
@@ -62,7 +102,10 @@ This project provides a simple yet powerful tool to transcribe meeting audio fil
 │   ├── transcribe.py       # Audio transcription logic
 │   ├── summarize.py        # Text summarization logic
 │   ├── requirements.txt    # Python dependencies
-│   ├── templates/
-│   │   └── index.html      # Frontend HTML
 │   └── uploads/            # Directory for uploaded audio files
+├── frontend/
+│   ├── public/             # Public assets (index.html, favicon, etc.)
+│   ├── src/                # React source code (App.js, index.js, CSS)
+│   ├── package.json        # Frontend dependencies and scripts
+│   └── build/              # Optimized production build of the frontend
 └── README.md
